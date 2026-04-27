@@ -1,177 +1,365 @@
-:root{
-    --bg-primary:#0f0f0f;
-    --bg-secundary:#1a1a1a;
-    --accent-copper:#c48259;
-    --accent-hover:#e0986b;
-    --earth-deep:#2d1b18;
-    --text-light:#ffffff;
-    --text-muted:#b0b0b0;
-    --font-heading:'Playfair Display',serif;
-    --font-body:'Montserrat',sans-serif;
-    --transition:0.3s ease;
+:root {
+    --bg-dark: #121212;         /* Fondo principal oscuro */
+    --bg-card: #1f1f1f;         /* Fondo para secciones resaltadas */
+    --copper: #c87941;          /* Color cobre para acentos (botones, títulos) */
+    --text-light: #f4f4f4;      /* Texto principal claro */
+    --text-muted: #aaaaaa;      /* Texto secundario */
 }
 
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Evita que el padding aumente el tamaño de las cajas */
 }
 
-body{
-    background-color: var(--bg-primary);
+body {
+    background-color: var(--bg-dark);
     color: var(--text-light);
-    font-family: var(--font-body);
-    overflow-x: hidden;
+    font-family: Arial, sans-serif; 
+    line-height: 1.6;
 }
 
-h1,h2,h3{
-    font-family: var(--font-heading);
-}
-
-.container{
-    width: 90%;
+/* Contenedor principal para centrar el contenido y dar márgenes laterales */
+.container, .section-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 0;
+    padding: 0 20px;
 }
 
-.section-title{
-    text-align: center;
-    color: var(--accent-copper);
+/* Clases para títulos */
+.section-title {
     font-size: 2.5rem;
+    color: var(--copper);
+    text-align: center;
     margin-bottom: 2rem;
+    padding-top: 4rem; /* Espacio superior para cada sección */
 }
 
-.main-header{
-    background-color: var(--bg-secundary);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    position: sticky;
+.main-header {
+    background-color: rgba(18, 18, 18, 0.95);
+    display: flex; /* Alinea logo y menú en la misma fila */
+    justify-content: space-between; /* Envía el logo a la izq y el menú a la der */
+    align-items: center; /* Centra verticalmente */
+    padding: 15px 40px;
+    position: sticky; /* Deja el menú fijo al hacer scroll */
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgb(196,130,89,0.2);
+    border-bottom: 1px solid #333;
 }
 
-.logo h1 span{
-    color: var(--accent-copper);
-}
-
-.hamburger{
+.logo h1 {
     font-size: 1.8rem;
-    color: var(--accent-copper);
+    color: var(--text-light);
+}
+
+.logo span {
+    color: var(--copper); /* Resalta la palabra Gourmet */
+}
+
+.logo p {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+.menu-to {
+    display: none; /* Esto oculta el cuadrito blanco siempre */
+}
+
+.hamburger {
+    display: none; /* Oculta las 3 rayitas en PC */
+    font-size: 2rem;
+    color: var(--copper);
     cursor: pointer;
 }
-
-.menu-to{
-    display: none;
-}
-
-.menu-nav{
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: var(--bg-secundary);
-}
-
-.main-nav ul{
+.main-nav ul {
     list-style: none;
-    text-align: center;
-    padding: 1rem 0;
+    display: flex;
+    gap: 20px; /* Separación entre los enlaces */
 }
 
-.main-nav li{
-    margin: 1rem 0;
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-.main-nav a:hover, .main-nav a.active{
-    color: var(--accent-copper);
+.main-nav a:hover, .main-nav a.active {
+    color: var(--copper);
 }
 
-.menu-to:checked ~ .main-nav{
-    display: block;
-}
-
-.hero{
-    height: 70vh;
-    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(Imagenes/fondo.jpg) center/cover;
+.hero {
+    height: 80vh; /* Ocupa el 80% de la altura de la pantalla */
+    /* Fondo con gradiente oscuro y una imagen de fondo */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Imagenes/fondo.jpg') center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-.cta-button{
-    background-color: var(--accent-copper);
-    color: var(--bg-primary);
-    padding: 1rem 2rem;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
-    margin-top: 1rem;
+.hero-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
 }
 
-.schedule{
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--copper);
+}
+
+.cta-button {
+    background-color: var(--copper);
+    color: #fff;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.3s;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: scale(1.05); /* Efecto de crecimiento al pasar el mouse */
+}
+
+.table-responsive {
+    overflow-x: auto; /* Permite scroll horizontal en móviles si la tabla es grande */
+}
+
+.schedule-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--bg-secundary);
+    background-color: var(--bg-card);
+    margin-bottom: 40px;
 }
 
-.schedule-table th{
-    background-color: var(--earth-deep);
-    color: var(--accent-copper);
-    padding: 1rem;
+.schedule-table th, .schedule-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #333;
 }
 
-.schedule-table td{
-    padding: 1rem;
-    border-bottom: 1px solid#333;
-    text-align: center;
+.schedule-table th {
+    background-color: var(--copper);
+    color: white;
 }
 
-.multimedia-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 1rem;
+.buy-btn {
+    background-color: transparent;
+    border: 1px solid var(--copper);
+    color: var(--copper);
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: 0.3s;
 }
 
-.grid-item img{
+.buy-btn:hover {
+    background-color: var(--copper);
+    color: white;
+}
+
+.about-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Separación entre el texto y la imagen */
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.about-text {
+    flex: 1; /* Toma el 50% del espacio */
+}
+
+.about-image {
+    flex: 1; /* Toma el 50% del espacio */
+}
+
+.about-image img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
-.chefs-grid{
+.philosophy-list {
+    margin-top: 20px;
+    padding-left: 20px;
+    list-style-type: square;
+}
+
+.philosophy-list li {
+    margin-bottom: 10px;
+}
+
+.philosophy-list strong {
+    color: var(--copper);
+}
+
+.multimedia-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-    gap: 2rem;
+    /* Crea columnas dinámicas que se ajustan solas (mínimo 250px) */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 60px;
 }
 
-.flip-card{
+.grid-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Recorta la imagen para que llene el cuadrado sin deformarse */
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.grid-item img:hover {
+    transform: scale(1.05); /* Efecto zoom en la galería */
+}
+
+.chefs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Contenedor principal de la tarjeta. 
+   'perspective' crea la ilusión de profundidad 3D al girar */
+.flip-card {
+    background-color: transparent;
     height: 400px;
-    perspective: 1000px;
+    perspective: 1000px; 
 }
 
-.flip-card-inner{
+/* Contenedor interno que contiene frente y reverso */
+.flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
+    transition: transform 0.8s; /* Tiempo que tarda en dar la vuelta */
+    transform-style: preserve-3d; /* Mantiene el 3D para los hijos */
 }
 
-.flip-card:hover .flip-card-inner{
+/* Al pasar el mouse por la tarjeta, el contenedor interno gira 180 grados */
+.flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back{
+/* Estilos comunes para ambos lados de la tarjeta */
+.flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden;
-    border-radius: 8px;
+    -webkit-backface-visibility: hidden; /* Oculta la parte trasera para Safari */
+    backface-visibility: hidden; /* Oculta la "espalda" cuando la tarjeta gira */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
+/* FRENTE de la tarjeta (La Foto) */
+.flip-card-front {
+    background-color: var(--bg-card);
+}
+
+.flip-card-front img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.flip-card-front h3 {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--copper);
+}
+
+/* REVERSO de la tarjeta (La Información) */
+.flip-card-back {
+    background-color: var(--copper);
+    color: white;
+    /* Inicia girada 180 grados hacia atrás */
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.flip-card-back h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.main-footer {
+    background-color: #050505;
+    padding: 40px 0 20px 0;
+    border-top: 2px solid var(--copper);
+    text-align: center;
+}
+
+.footer-info, .footer-nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.social-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-list a {
+    color: var(--copper);
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column; /* Apila el logo y el menú verticalmente */
+        padding: 15px;
+    }
+
+    /* Mostramos el ícono de hamburguesa en móviles */
+    .hamburger {
+        display: block; 
+    }
+
+    /* Ocultamos el menú por defecto y lo prepara para desplegarse */
+    .main-nav {
+        width: 100%;
+        display: none; 
+        margin-top: 15px;
+    }
+
+    .main-nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Cuando el checkbox invisible está marcado, se muestra el menú */
+    .menu-to:checked ~ .main-nav {
+        display: block;
+    }
+
+    .about-flex {
+        flex-direction: column; /* Apila texto e imagen en móviles */
+    }
+}
